@@ -1,20 +1,25 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container } from "react-bootstrap";
-import { useState } from "react";
+import { useState, Link } from "react";
 import axios from "axios";
 
 //import {Link} from"react-router-dom";
 import "./signInUp.css";
 function SignUp() {
   const [nationalId, setNationalId] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [password, setPassword] = useState("");
 
+
+  function click(){
+    window.location='/'
+  }
   function handleSubmit(event) {
     event.preventDefault();
 
-    axios.post("http://localhost:5000/users", {
+    axios.post("http://localhost:5000/users/register", {
         nationalId: nationalId,
+        password: password,
       })
       .then(function (response) {
         console.log(response);
@@ -43,19 +48,21 @@ function SignUp() {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicNumberPhone">
-          <Form.Label>Date of Birth</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control
-            type="dateOfBirth"
-            name="dateOfBirth"
-            value={dateOfBirth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
+            name="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter date of birth"
           />
         </Form.Group>
-
-        <Button variant="primary" type="submit">
+        <Button  variant="primary" type="submit">
           Submit
-        </Button>
+        </Button>  
+        <Button onClick={click}variant="primary" type="submit">
+         LogIn
+        </Button>         
       </Form>
     </div>
     </Container>

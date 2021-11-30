@@ -8,7 +8,7 @@ const { users } = require("../dataBase/dbUsers");
 userRouter.get('/',getAllUser);
 userRouter.get('/:id',getUser);
 userRouter.post('/login', checkUserLogin)
-userRouter.post('/',addNewUser);
+userRouter.post('/register',addNewUser);
 userRouter.put('/user',updateUser);
 
 
